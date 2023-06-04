@@ -1,7 +1,10 @@
-%h1 Editing category
+.category.edit-page
+    .card
+        .card-body
+            %h2 Editing category
 
-= render 'form'
+            = render 'form'
 
-= link_to 'Show', @category, class: "btn btn-outline-secondary"
-\|
-= link_to 'Back', categories_path, class: "btn btn-outline-secondary"
+            = link_to 'Show', @category, class: "btn btn-outline-secondary"
+            \|
+            = link_to 'Back', categories_path, class: "btn btn-outline-secondary"
