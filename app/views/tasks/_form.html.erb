@@ -1,0 +1,22 @@
+<%= simple_form_for(@task) do |form| %>
+  <%= form.error_notification %>
+  <%= form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= form.input :name, label: t('.name') %>
+    <%= form.input :description, label: t('.description') %>
+    <%= form.input :due_date, label: t('.due_time') %>
+    <%= form.association :category, label: t('categories.category') %>
+  </div>
+
+  <%= link_to_add_nested(form, :participating_users, '#participants', partial: 'participating_users_field', link_text: "Add") %>
+  <div id="participants">
+    <%= form.simple_fields_for :participating_users do |g|%>
+      <%= render 'participating_users_field', form: g %>
+    <% end %>
+  </div>
+      <br>
+  <div class="form-actions">
+    <%= form.button :submit, class: "btn btn-outline-info" %>
+  </div>
+<% end %>
