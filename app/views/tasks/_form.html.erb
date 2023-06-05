@@ -8,11 +8,11 @@
     <%= form.input :due_date, label: t('.due_time') %>
     <%= form.association :category, label: t('categories.category') %>
   </div>
-
   <%= link_to_add_nested(form, :participating_users, '#participants', partial: 'participating_users_field', link_text: "Add") %>
   <div id="participants">
-    <%= form.simple_fields_for :participating_users do |g|%>
+    <%= form.fields_for :participating_users do |g|%>
       <%= render 'participating_users_field', form: g %>
+    
     <% end %>
   </div>
       <br>
