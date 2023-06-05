@@ -66,7 +66,7 @@
         <%= simple_form_for Note.new, url: task_notes_path(task_id: @task.id), html: { data: {controller: "reset-form", action: "turbo:submit-end->reset-form#reset"}}, remote: true do |f| %>
           <%= f.input :body, label: false, as: :string, placeholder: 'write your note', input_html: { autocomplete: :off } %>
           <% end %>
-          <% end %>
+        <% end %>
           </div>
     </div>
   </div>
