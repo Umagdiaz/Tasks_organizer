@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   has_many :participating_users, class_name: 'Participant'
   has_many :participants, through: :participating_users, source: :user
-  has_many :notes
+  has_many :notes, dependent: :destroy
 
   #validates :participating_users, presence: true
   validates :name, :description, presence: true

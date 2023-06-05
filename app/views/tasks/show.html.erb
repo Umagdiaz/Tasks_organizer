@@ -40,34 +40,37 @@
       <div class="task-participants">
         <div class="task-participants-header font-weight-bold text-uppercase">Participants</div>
          
-        
       </div>
-      <%= link_to 'Edit', edit_task_path(@task), class: "btn btn-outline-warning"  %>
-      |
-      <%= link_to 'Back', tasks_path, class: "btn btn-secondary" %>
-    </div>
-  </div>
+
+      <div>
+        <%= link_to 'Edit', edit_task_path(@task), class: "btn btn-outline-warning"  %>
+        <%= link_to 'Back', tasks_path, class: "btn btn-secondary" %>
+      </div>
+
+  
   <h2 class="mt-2 mb-2">Notes</h2>
   <div class="notes-container">
-    <div class="card">
+    
       <div class="card-body">
-      <% if @task.notes.exists? %>
+    
       <div class="notes">
-      <% @task.notes.each do |note| %>
+        <% @task.notes.each do |note| %>
         <div class="note-element">
-              <%= render 'tasks/notes/note', note: note %>
-            </div>
+          <%= render 'tasks/notes/note', note: note %>
+        </div>
           <% end %>
         </div>
-      <% else %>
-      <div class="notes"></div>
-      <% end %>
-      <% if can?(:add_notes, @task) %>
-        <%= simple_form_for Note.new, url: task_notes_path(task_id: @task.id), html: { data: {controller: "reset-form", action: "turbo:submit-end->reset-form#reset"}}, remote: true do |f| %>
-          <%= f.input :body, label: false, as: :string, placeholder: 'write your note', input_html: { autocomplete: :off } %>
+      
+        <div class="notes"></div>
+          <%= simple_form_for Note.new, url: task_notes_path(task_id: @task.id), html: { data: { controller: "reset_form", action: "turbo:submit-end->reset-form#reset" } }, remote: true do |f| %>
+          <%= f.input :body, label: false, as: :string, placeholder: 'write your note...', input_html: { autocomplete: :off } %>
           <% end %>
-        <% end %>
-          </div>
+        </div>
+
     </div>
   </div>
 </div>
+
+
+
+

@@ -4,6 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
+    
     @task = Task.joins(:participants).where(
       'owner_id = ? OR participants.user_id = ?',
       current_user.id,
@@ -54,8 +55,8 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
-    @task.destroy
-
+    @task.destroy 
+    
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
