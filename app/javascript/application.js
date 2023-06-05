@@ -5,4 +5,5 @@ import 'jquery'
 import '@popperjs/core'
 import 'bootstrap'
 import "vanilla-nested"
+import "@nathanvda/cocoon"
 

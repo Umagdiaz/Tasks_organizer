@@ -6,4 +6,12 @@ const application = Application.start()
 application.debug = false
 window.Stimulus   = application
 
+import jQuery from "jquery"
+
+// Configure Stimulus development experience
+application.debug = false
+window.Stimulus   = application
+window.jQuery = jQuery
+window.$ = jQuery
+
 export { application }

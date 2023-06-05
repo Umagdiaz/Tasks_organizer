@@ -10,7 +10,7 @@ class Task < ApplicationRecord
   validates :name, uniqueness: { case_insensitive: false }
   validate :due_date_validay
 
-  accepts_nested_attributes_for :participating_users, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :participating_users, allow_destroy: true
 
   def due_date_validay
     return if due_date.blank?
