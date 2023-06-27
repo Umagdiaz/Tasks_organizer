@@ -5,7 +5,7 @@ class Task < ApplicationRecord
   has_many :participants, through: :participating_users, source: :user
   has_many :notes, dependent: :destroy
 
-  #validates :participating_users, presence: true
+  validates :participating_users, presence: false
   validates :name, :description, presence: true
   validates :name, uniqueness: { case_insensitive: false }
   validate :due_date_validay

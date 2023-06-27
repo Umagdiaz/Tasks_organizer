@@ -30,13 +30,13 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem "pry"
+  gem "pry-doc"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem "pry"
-  gem "pry-doc"
   gem "hamlit-rails"
 end
 
@@ -49,4 +49,5 @@ group :test do
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
 end

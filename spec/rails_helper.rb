@@ -52,6 +52,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include Devise::Test::ControllerHelpers, type: 'controller'
   config.include Devise::Test::IntegrationHelpers, type: 'request'
+  config.include Devise::Test::IntegrationHelpers, type: 'system'
 
   config.before(:suite) do
     DatabaseCleaner.clean
@@ -61,8 +62,16 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
-  config.before(:each) do
+  config.after(:each) do
     DatabaseCleaner.clean
+  end
+
+  config.before(:each, type: :system) do
+    driven_by(:rack_test)
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by(:selenium_chrome_headless)
   end
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false

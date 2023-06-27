@@ -11,6 +11,7 @@ import '@popperjs/core'
 import 'bootstrap'
 import "vanilla-nested"
 import "cocoon"
+import "selectize"
 
 import "../src/stylesheets/application"
 import "../src/javascripts/main"
