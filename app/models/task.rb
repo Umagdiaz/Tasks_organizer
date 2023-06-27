@@ -12,6 +12,10 @@ class Task < ApplicationRecord
 
   accepts_nested_attributes_for :participating_users, allow_destroy: true
 
+  def participants
+    participating_users.includes(:user).map(&:user)
+  end
+  
   def due_date_validay
     return if due_date.blank?
     return if due_date >= Date.today

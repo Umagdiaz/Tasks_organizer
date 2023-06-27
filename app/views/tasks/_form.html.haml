@@ -9,6 +9,9 @@
     = f.input :due_date
     = f.association :category
     #addParticipants
+      %br
+      %h3
+      .uppercased-font{ style: 'display: inline-block;' } Participant
       = link_to_add_association f, :participating_users, class: 'btn btn-outline-info', 'data-association-insertion-node' => '.participants .participants-container', 'data-turbolinks' => false do
         Add participants
         .fa.fa-plus-circle
