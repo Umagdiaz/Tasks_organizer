@@ -1,0 +1,53 @@
+<%= simple_form_for(@task)  do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.input :name, label: "Name" %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.input :due_date, as: :string, input_html: { type: :date }, label: "Expiration Date" %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.input :category_id, label: "Category", as: :select, collection: Category.all %>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <%= f.input :description %>
+    </div>
+  </div>
+ 
+  <div class:"addparticipants">
+    <h3>Participants</h3>
+
+      <%= link_to_add_association "Add", f, :participating_users, class: 'btn btn-outline-info btn-sm ' %>
+
+      <div id="participants">
+       <%= f.simple_fields_for :participating_users do |g| %>
+        <%= render 'participating_user_fields', f: g %>
+      <% end %>
+      </div>
+
+      <div class=".participants-container">
+      </div>  
+  </div>
+  <hr>
+
+  <div class="files">
+    <label for="formFile" class="text form-label">Add files</label>
+    <%= f.file_field :files, multiple: true, direct_upload: true, class: 'form-control'%>
+  </div>
+  <br>
+  <hr>
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-outline-success' %>
+  </div>
+<% end %>
+
+
+
+
+
+

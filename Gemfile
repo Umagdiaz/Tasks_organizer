@@ -21,7 +21,6 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'popper_js'
 gem 'devise'
-gem 'vanilla_nested'
 gem 'cocoon'
 gem 'cancancan'
 

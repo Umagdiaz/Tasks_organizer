@@ -9,5 +9,3 @@ const application = Application.start();
 
 export default application;
 
-import ResetFormController from "./controllers/reset_form_controller";
-application.register("reset-form", ResetFormController);

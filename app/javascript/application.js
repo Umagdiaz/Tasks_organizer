@@ -5,13 +5,13 @@ require("@rails/activestorage").start()
 require("channels")
 
 import "@hotwired/turbo-rails"
-import "controllers"
+import "./controllers"
 import 'jquery'
 import '@popperjs/core'
 import 'bootstrap'
-import "vanilla-nested"
 import "cocoon"
 import "selectize"
+import "@nathanvda/cocoon"
 
 import "../src/stylesheets/application"
 import "../src/javascripts/main"
