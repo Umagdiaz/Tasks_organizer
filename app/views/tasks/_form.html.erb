@@ -23,21 +23,22 @@ nested_form_wrapper_selector_value: '.nested-form-wrapper'
     </div>
   </div>
   <br>
-  
+  <hr>
+ 
+    <h3>Participants
+     <button type="button" data-action="nested-form#add" class="btn btn-outline-info btn-sm float-right">Add</button>
+     </h3>
+     
     <template data-nested-form-target="template">
       <%= f.simple_fields_for :participating_users, Participant.new, child_index: 'NEW_RECORD' do |g| %>
         <%= render 'participating_user_fields', f: g %>
       <% end %>
     </template>
-
-      <%= f.simple_fields_for :participating_users do |g| %>
-        <%= render 'participating_user_fields', f: g %>
-      <% end %>
-
+    <%= f.simple_fields_for :participating_users do |g| %>
+      <%= render 'participating_user_fields', f: g %>
+    <% end %>
     <div data-nested-form-target="target"></div>
-      <button type="button" data-action="nested-form#add" class="btn btn-outline-info btn-sm float-right">Add participants</button>
-   
-    
+ 
     <hr>
     <br>
     <div class="files">
