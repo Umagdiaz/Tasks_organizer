@@ -45,6 +45,7 @@ before(:each) { sign_in user }
       follow_redirect!
       expect(response).to render_template(:show)
       expect(response.body).to include("Info")
+      expect(response).to have_http_status(200)
     end
   end
 end

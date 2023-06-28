@@ -13,5 +13,7 @@ import "selectize"
 
 
 import "../src/stylesheets/application"
-import "../src/javascripts/main"
+import "/app/javascript/javascripts/main"
+
+
 

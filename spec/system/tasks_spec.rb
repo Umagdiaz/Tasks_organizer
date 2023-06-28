@@ -16,15 +16,22 @@ before(:each) { sign_in user }
 
   describe 'POST /tasks' do
     let!(:category) { create :category}
+    let!(:participant) { create :user}
     it 'create new task', js: true do
       visit '/tasks/new'
 
       fill_in 'Name', with: 'Test 2'
       fill_in 'Description', with: 'Desc'
+      fill_in 'Expiration Date', with: Date.today
       select category.name, from: 'Category'
 
-      click_link 'Add participants'
-
+      click_button 'Add'
+      xpath = '//*[@id="new_task"]/div[2]'
+      within(:xpath, xpath) do
+        select participant.email, from: 'User'
+        select 'responsible', from: 'Rol'        
+      end
+    
     end
   end
 end

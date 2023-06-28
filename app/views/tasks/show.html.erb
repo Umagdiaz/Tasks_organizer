@@ -38,10 +38,16 @@
         </table>
       </div>
       <div class="task-participants">
-        <div class="task-participants-header font-weight-bold text-uppercase">Participants</div>
-         
+        <div class="task-participants-header font-weight-bold "><strong>Participants<strong></div>
+         <%= @task.participating_users.each do |participant| %>
+         <div class="container">
+         <br>
+          <% participant.user.email %>
+          <% end %>
+          </div>
+         </div>
       </div>
-
+      <br>
       <div>
         <%= link_to 'Edit', edit_task_path(@task), class: "btn btn-outline-warning"  %>
         <%= link_to 'Back', tasks_path, class: "btn btn-secondary" %>
