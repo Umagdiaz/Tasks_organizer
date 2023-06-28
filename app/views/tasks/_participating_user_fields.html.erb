@@ -1,0 +1,17 @@
+<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <hr>
+  <div class="text-right"></div>
+  <div class="row">
+    <div class="col-4">
+      <%= f.input :user_id, label: "User", as: :select, collection: User.all, label_method: -> (u) { u.email } %>
+    </div>
+    <div class="col-4">
+      <%= f.input :role, label: "Rol", as: :select, collection: Participant.roles, value_method: -> (r) { r[0] } %>
+    </div>
+    <div class="col-4">
+      <button type="button" data-action="nested-form#remove" class="btn btn-warning btn-sm btn-flat mt-4">X</button>
+      <%= f.input :_destroy, as: :hidden %>
+    </div>
+  </div>
+  <br>
+</div>

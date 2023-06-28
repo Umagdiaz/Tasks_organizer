@@ -9,9 +9,8 @@ import "./controllers"
 import 'jquery'
 import '@popperjs/core'
 import 'bootstrap'
-import "cocoon"
 import "selectize"
-import "@nathanvda/cocoon"
+
 
 import "../src/stylesheets/application"
 import "../src/javascripts/main"

@@ -1,4 +1,8 @@
-<%= simple_form_for(@task)  do |f| %>
+<%= simple_form_for(@task, data:{
+controller: 'nested-form', 
+nested_form_wrapper_selector_value: '.nested-form-wrapper'
+})  do |f| %>
+
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -18,31 +22,33 @@
       <%= f.input :description %>
     </div>
   </div>
- 
-  <div class:"addparticipants">
-    <h3>Participants</h3>
-
-      <%= link_to_add_association "Add", f, :participating_users, class: 'btn btn-outline-info btn-sm ' %>
-
-      <div id="participants">
-       <%= f.simple_fields_for :participating_users do |g| %>
+  <br>
+  
+    <template data-nested-form-target="template">
+      <%= f.simple_fields_for :participating_users, Participant.new, child_index: 'NEW_RECORD' do |g| %>
         <%= render 'participating_user_fields', f: g %>
       <% end %>
-      </div>
+    </template>
 
-      <div class=".participants-container">
-      </div>  
-  </div>
-  <hr>
+      <%= f.simple_fields_for :participating_users do |g| %>
+        <%= render 'participating_user_fields', f: g %>
+      <% end %>
 
-  <div class="files">
-    <label for="formFile" class="text form-label">Add files</label>
-    <%= f.file_field :files, multiple: true, direct_upload: true, class: 'form-control'%>
-  </div>
-  <br>
-  <hr>
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-outline-success' %>
+    <div data-nested-form-target="target"></div>
+      <button type="button" data-action="nested-form#add" class="btn btn-outline-info btn-sm float-right">Add participants</button>
+   
+    
+    <hr>
+    <br>
+    <div class="files">
+      <label for="formFile" class="text form-label"><strong>Add files</strong></label>
+        <%= f.file_field :files, multiple: true, direct_upload: true, class: 'form-control'%>
+    </div>
+
+    <br>
+    <hr>
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-outline-success' %>
   </div>
 <% end %>
 

@@ -21,7 +21,6 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'popper_js'
 gem 'devise'
-gem 'cocoon'
 gem 'cancancan'
 
 group :development, :test do
