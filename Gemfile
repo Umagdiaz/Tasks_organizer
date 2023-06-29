@@ -22,6 +22,8 @@ gem 'jquery-rails'
 gem 'popper_js'
 gem 'devise'
 gem 'cancancan'
+gem 'sucker_punch'
+gem 'aasm'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -47,5 +49,4 @@ group :test do
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
-  gem 'selenium-webdriver'
 end

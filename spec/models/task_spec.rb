@@ -54,6 +54,7 @@ RSpec.describe Task, type: :model do
         before(:each) { task.save }
 
         it 'has all associated participants' do
+         
           expect(task.participating_users.count).to eq participants_count
           expect(Participant.count).to eq participants_count
         end

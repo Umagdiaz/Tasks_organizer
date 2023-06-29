@@ -1,0 +1,25 @@
+<h1>Hi</h1>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>, you have a new task
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @task.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @task.description %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @task.category.name %>
+</p>
+
+<p>
+  <strong>link:</strong>
+  <a href="<%= @task.code %>"><%= @task.name %></a>
+</p>

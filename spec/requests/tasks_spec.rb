@@ -3,14 +3,12 @@ require 'rails_helper'
 RSpec.describe "Tasks", type: :request do 
 let(:user) {create :user}
 before(:each) { sign_in user }
-
   describe "GET /tasks" do
     it "tasks view status ok" do
       get tasks_path
       expect(response).to have_http_status(200)
     end
   end
-
   describe "GET /tasks/new" do
     it "new tasks template" do
       get new_task_path
@@ -47,5 +45,19 @@ before(:each) { sign_in user }
       expect(response.body).to include("Info")
       expect(response).to have_http_status(200)
     end
+  end
+  describe "PATCH /task/:id/trigger" do
+    let(:participants_count) { 4 }
+    subject(:task) do 
+       build(:task_with_participants, owner: user, participants_count: participants_count) 
+    end
+
+    it 'updates the state' do
+      task.save
+
+      patch trigger_task_path(task, event: event)
+      expect(task.reload.status).to eq 'in_process'
+    end
+
   end
 end

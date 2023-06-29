@@ -9,6 +9,7 @@ require 'rspec/rails'
 require 'factory_bot_rails'
 require 'capybara/rails'
 require 'database_cleaner'
+require 'sucker_punch/testing/inline'
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
   with.test_framework :rspec
