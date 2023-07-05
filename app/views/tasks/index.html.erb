@@ -1,39 +1,47 @@
 <div class="tasks index-page">
-  <h1 class="display-4">Listing Tasks</h1>
-  <div class="card bg-gray">
-    <div class="card-body pb-2">
-      <div class="tasks-container">
-        <% @tasks.each do |task| %>
-          <div class="task-container">
-            <div class="task-info">
-              <div class="task-title">
-			  <hr>
-                <%= task.name %>
-                <span class="task-category">
-                  <%= task.category.name %>
-                </span>
-              </div>
-              <div class="task-description">
-                <%= task.description %>
-              </div>
-              <div class="task-dates">
-                <b><%= task.owner.email %></b>
-                <%= "created at  #{l task.created_at, format: :long}" %>
-              </div>
-            </div>
-            <div class="task-interactions">
-              <div class="task-participants"></div>
-              <div class="task-actions">
-                <%= link_to "Show", task, class: 'btn btn-outline-info' %>
-                <%= link_to "Edit", edit_task_path(task), class: 'btn btn-outline-warning' %>
-                <%= link_to "Delete", task, 'data-turbo-method': :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-outline-danger' %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-		<hr>
-        <%= link_to "Add new", new_task_path, class: 'btn btn-dark' %>
-      </div>
+  <h3 class="display-5">Listing Tasks</h3>
+  <br>
+  <div class="">
+    <div class="card-body ">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tasks.each do |task| %>
+            <tr>
+              <td><%= task.name %></td>
+              <td><%= task.category.name %></td>
+              <td><%= task.description %></td>
+              <td>
+                <%= link_to "Show", task, class: 'btn btn-outline-info btn-sm' %>
+                <%= link_to "Edit", edit_task_path(task), class: 'btn btn-outline-warning btn-sm' %>
+              </td>  
+              <td> <%= link_to "Delete", task, 'data-turbo-method': :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger btn-sm' %></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="task-dates">
+                  <b><%= task.owner.email %></b>
+                  <%= "| #{l(task.created_at, format: :short)}" %>
+                </div>
+                <hr>
+                <br>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table> 
+      <br>
+      <%= link_to "Add new", new_task_path, class: 'btn btn-dark' %>
     </div>
+    <div class="task-participants"></div>
+    <br>
   </div>
 </div>
