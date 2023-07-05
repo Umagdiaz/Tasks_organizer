@@ -38,14 +38,6 @@ nested_form_wrapper_selector_value: '.nested-form-wrapper'
       <%= render 'participating_user_fields', f: g %>
     <% end %>
     <div data-nested-form-target="target"></div>
- 
-    <hr>
-    <br>
-    <div class="files">
-      <label for="formFile" class="text form-label"><strong>Add files</strong></label>
-        <%= f.file_field :files, multiple: true, direct_upload: true, class: 'form-control'%>
-    </div>
-
     <br>
     <hr>
     <div class="form-actions">

@@ -6,7 +6,7 @@ class Task < ApplicationRecord
   has_many :participating_users, class_name: 'Participant'
   has_many :participants, through: :participating_users, source: :user, dependent: :destroy
   has_many :notes, dependent: :destroy
-  has_many_attached :files
+
 
   validates :participating_users, presence: false
   validates :name, :description, presence: true

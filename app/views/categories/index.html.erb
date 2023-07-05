@@ -1,0 +1,35 @@
+
+<div class="categories index-page">
+  <div class="card">
+    <div class="card-body">
+      <h2>Listing categories</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td><%= category.name %></td>
+              <td><%= category.description %></td>
+              
+              <td><%= link_to 'Show', category, class: "btn btn-outline-info btn-sm" %></td>
+              <td><%= link_to 'Edit', edit_category_path(category), class: "btn btn-outline-warning btn-sm" %></td>
+              <% if category.tasks.any? %>
+               <td><%= link_to 'Destroy', category, 'data-turbo-method': :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary btn-sm" %></td>
+              <% else %>
+                <td><%= link_to 'Destroy', category, 'data-turbo-method': :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+      <a href="<%= new_category_path %>" class="btn btn-dark">New</a>
+    </div>
+  </div>
+</div>
