@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users
-  resources :tasks do 
+  resources :tasks do
     patch :trigger, on: :member
     resources :notes, only: [:create], controller: 'tasks/notes'
-  end 
+  end
   resources :categories
 
   root 'tasks#index'

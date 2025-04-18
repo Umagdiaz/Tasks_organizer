@@ -1,9 +1,12 @@
-class Tasks::SendEmailJob
-  include SuckerPunch::Job
+# frozen_string_literal: true
 
-  def perform(task_id)
-    task = Task.find(task_id)
-    Tasks::SendEmail.new.call(task)
-    
+module Tasks
+  class SendEmailJob
+    include SuckerPunch::Job
+
+    def perform(task_id)
+      task = Task.find(task_id)
+      Tasks::SendEmail.new.call(task)
+    end
   end
 end

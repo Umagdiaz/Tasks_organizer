@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   load_and_authorize_resource
-  before_action :set_task, only: %i[ show edit update destroy trigger]
+  before_action :set_task, only: %i[show edit update destroy trigger]
 
   # GET /tasks or /tasks.json
   def index
-    
     @task = Task.joins(:participants).where(
       'owner_id = ? OR participants.user_id = ?',
       current_user.id,
-      current_user.id,
+      current_user.id
     ).group(:id)
   end
 
   # GET /tasks/1 or /tasks/1.json
   def show
+    nil
   end
 
   # GET /tasks/new
@@ -24,6 +26,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    nil
   end
 
   # POST /tasks or /tasks.json
@@ -32,7 +35,7 @@ class TasksController < ApplicationController
     @task.owner = current_user
     respond_to do |format|
       if @task.save
-        format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
+        format.html { redirect_to task_url(@task), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +48,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
+        format.html { redirect_to task_url(@task), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,10 +59,10 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
-    @task.destroy 
-    
+    @task.destroy
+
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
+      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,23 +72,25 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit(
-        :name, 
-        :description, 
-        :due_date, 
-        :category_id,
-        participating_users_attributes: [
-        :user_id,
-        :role,
-        :id,
-        :_destroy
-        ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit(
+      :name,
+      :description,
+      :due_date,
+      :category_id,
+      participating_users_attributes: %i[
+        user_id
+        role
+        id
+        _destroy
+      ]
+    )
+  end
 end

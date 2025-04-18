@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Task < ApplicationRecord
   include AASM
 
@@ -6,7 +8,6 @@ class Task < ApplicationRecord
   has_many :participating_users, class_name: 'Participant'
   has_many :participants, through: :participating_users, source: :user, dependent: :destroy
   has_many :notes, dependent: :destroy
-
 
   validates :participating_users, presence: false
   validates :name, :description, presence: true
@@ -46,15 +47,17 @@ class Task < ApplicationRecord
   def participants
     participating_users.includes(:user).map(&:user)
   end
-  
+
   def due_date_validay
     return if due_date.blank?
     return if due_date >= Date.today
+
     errors.add :due_date
   end
 
   def send_email
     return if Rails.env.development?
-    Tasks::SendEmailJob.perform_async(self.id)
+
+    Tasks::SendEmailJob.perform_async(id)
   end
 end
