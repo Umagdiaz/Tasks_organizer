@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_secure_password
+
     has_many :task
     has_many :participants
     has_many :note
@@ -6,6 +8,6 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true
 
     def accesible_tasks
-        Task.(owner: User.id)
+        Task.where(owner_id: self.id)
     end
 end
