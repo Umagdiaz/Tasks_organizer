@@ -1,8 +1,10 @@
 class TasksController < ApplicationController
+  before_action :require_login
   before_action :set_task, only: [:show, :edit, :update, :destroy, :trigger]
 
+
   def index
-    @tasks = Task.all
+    @tasks = current_user.accesible_tasks
   end
 
   def show

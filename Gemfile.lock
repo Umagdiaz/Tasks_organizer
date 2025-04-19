@@ -87,6 +87,7 @@ GEM
     ast (2.4.3)
     backport (1.2.0)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     benchmark (0.4.0)
     bigdecimal (3.1.9)
     bindex (0.8.1)
@@ -309,6 +310,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  bcrypt (~> 3.1.7)
   bootsnap
   debug
   importmap-rails
